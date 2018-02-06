@@ -2,7 +2,7 @@
 $title = "Home";
 $menu = "";
 
-$filename = "articles.html";
+$filename = "content/articles.html";
 $html_content = "<article><h2>Ooops! Something went wrong!</h2></article>";
 
 if (file_exists($filename)) {
