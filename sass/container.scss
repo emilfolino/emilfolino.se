@@ -18,3 +18,15 @@
     display: none;
     margin: 0 0 2rem 0;
 }
+
+@media (max-width: 1023px) {
+    .main-title-mobile {
+        display: block;
+        margin: 0 0 2rem 0;
+        font-size: 2.8rem;
+    }
+
+    .container {
+        margin-left: 0;
+    }
+}

@@ -16,18 +16,13 @@
                 "about.php" => "About",
                 "tech.php" => "Technical"
             ];
+
+            foreach ($menu_items as $url => $text) {
+                $active = isset($menu) && $menu === $url ? " active" : "";
+                print "<a class='menu-item$active' href='$url'>$text</a>";
+            }
         ?>
 
-        <nav class="left-nav-container">
-            <ul class="left-nav">
-            <?php
-                foreach ($menu_items as $url => $text) {
-                    $active = isset($menu) && $menu === $url ? " active" : "";
-                    print "<li class='menu-item-container'><a class='menu-item$active' href='$url'>$text</a>";
-                }
-            ?>
-            </ul>
-        </nav>
     </section>
 
     <main class="container">
