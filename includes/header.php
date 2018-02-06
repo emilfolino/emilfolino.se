@@ -22,8 +22,6 @@
                 print "<a class='menu-item$active' href='$url'>$text</a>";
             }
         ?>
-
     </section>
-
     <main class="container">
         <h1 class="main-title-mobile">emilfolino.com</h1>
