@@ -1,0 +1,20 @@
+.container {
+    margin-left: $left-menu-width;
+    padding: $top-padding + 0.8rem $left-padding;
+    height: 100%;
+}
+
+.container article h2 {
+    font-size: 2rem;
+    margin: 0 0 2rem 0;
+}
+
+.container article {
+    font-size: 1.4rem;
+    line-height: 1.4;
+}
+
+.main-title-mobile {
+    display: none;
+    margin: 0 0 2rem 0;
+}

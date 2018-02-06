@@ -1,0 +1,37 @@
+.left-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: $left-menu-bg-color;
+    box-sizing: border-box;
+    padding: $top-padding $left-padding;
+    width: $left-menu-width;
+    line-height: 1.4;
+}
+
+.main-title {
+    color: $left-menu-color;
+    margin: 0 0 2rem 0;
+    font-size: 2.8rem;
+}
+
+.left-nav {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.menu-item-container {
+    padding: 0.4rem 0;
+}
+
+.menu-item {
+    color: $left-menu-color;
+    text-decoration: none;
+    font-size: 1.6rem;
+}
+
+.menu-item:hover,
+.menu-item.active {
+    text-decoration: underline;
+}
