@@ -1,5 +1,6 @@
 {
     "require": {
-        "michelf/php-markdown": "^1.8"
+        "michelf/php-markdown": "^1.8",
+        "sunra/php-simple-html-dom-parser": "^1.5.2"
     }
 }

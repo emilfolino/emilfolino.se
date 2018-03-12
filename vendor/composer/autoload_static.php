@@ -20,11 +20,22 @@ class ComposerStaticInit5e41ecd55ecc9ef068147c82214af54e
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'Sunra\\PhpSimple\\HtmlDomParser' => 
+            array (
+                0 => __DIR__ . '/..' . '/sunra/php-simple-html-dom-parser/Src',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit5e41ecd55ecc9ef068147c82214af54e::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit5e41ecd55ecc9ef068147c82214af54e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit5e41ecd55ecc9ef068147c82214af54e::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

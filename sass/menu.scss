@@ -4,6 +4,15 @@
     font-size: 2.8rem;
 }
 
+.main-title a {
+    color: $left-menu-color;
+    text-decoration: none;
+}
+
+.main-title a:hover {
+    text-decoration: underline;
+}
+
 .menu-item {
     color: $left-menu-color;
     text-decoration: none;
@@ -12,8 +21,7 @@
     margin-bottom: 0.8rem;
 }
 
-.menu-item:hover,
-.menu-item.active {
+.menu-item:hover {
     text-decoration: underline;
 }
 
