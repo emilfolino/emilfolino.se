@@ -69,7 +69,7 @@ function make_pages() {
 
 function make_head($title) {
     $str = "<!doctype html>";
-    $str.= "<html>";
+    $str.= "<html lang='en'>";
     $str.= "<head>";
         $str.= "<meta charset='utf-8'>";
         $str.= "<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>";
@@ -88,12 +88,12 @@ function make_head($title) {
 function make_meny() {
     $pages_dir = "pages";
 
-    $str = "<section class='left-menu'>";
+    $str = "<nav class='left-menu'>";
     $str.= "<h1 class='main-title'><a href='/'>emilfolino.se</a></h1>";
 
     $menu_items = [
         "/" => "Home",
-        "archive.html" => "Archive"
+        //"archive.html" => "Archive"
     ];
 
     $files = glob("$pages_dir/*.md");
@@ -108,7 +108,7 @@ function make_meny() {
         $str.= "<a class='menu-item' href='$url'>$text</a>";
     }
 
-    $str.= "</section>";
+    $str.= "</nav>";
 
     return $str;
 }
@@ -136,7 +136,7 @@ function slugify($str)
 
 
 make_index("index.html", 10);
-make_index("archive.html");
+// make_index("archive.html");
 make_pages();
 
 print("<br>DONE");
