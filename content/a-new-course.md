@@ -1,0 +1,2 @@
+## A new course
+I have been working on a new course Webbapplikationer för mobila enheter (Web Applications for Mobile Devices) since I returned from parental leave after X-mas. Last year we received some criticism of the course, so I have tweaked the course slightly to give a better introduction to the technologies used in the course. It's going to be interesting come study period 4 to see what will be the verdict this time around.

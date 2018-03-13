@@ -29,6 +29,6 @@ update:
 build:
 	rm -rf output/*
 	cp -r fonts output/
-	cp normalize.css output/
+	cp -r img output/
 	sass base.scss output/style.min.css --style compressed
 	/usr/bin/php compiler.php

@@ -76,7 +76,6 @@ function make_head($title) {
         $str.= "<title>";
         $str.= isset($title) ? $title . " - " : "";
         $str.= "emilfolino.se</title>";
-
         $str.= "<link rel='stylesheet' href='style.min.css' />";
     $str.= "</head>";
     $str.= "<body>";

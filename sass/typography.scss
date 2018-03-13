@@ -6,3 +6,41 @@ h1 {
     font-family: 'Faune', sans-serif;
     font-weight: 900;
 }
+
+.container article h2 {
+    font-size: 2rem;
+    margin: 2rem 0 0 0;
+}
+
+.container article h3 {
+    font-size: 1.6rem;
+    margin: 1.6rem 0 0 0;
+}
+
+.container article p {
+    margin: 0 0 2rem 0;
+}
+
+.container article {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    border-bottom: 1px solid #efefef;
+}
+
+.container article:last-of-type {
+    border-bottom: none;
+}
+
+pre {
+    padding: 0.8rem;
+    background-color: #efefef;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: auto;
+    border-left: 0.2rem solid $left-menu-bg-color;
+}
+
+code {
+    font-size: 1rem;
+    font-family: monospace;
+}
