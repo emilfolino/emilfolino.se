@@ -1,7 +1,3 @@
-# emilfolino.com
+# emilfolino.se
 
-[faune](http://www.cnap.graphismeenfrance.fr/faune/en.html)
-
-[markdown](https://github.com/michelf/php-markdown)
-
-#1a1733
+Static Site generation tool used on [emilfolino.se](https://emilfolino.se).
