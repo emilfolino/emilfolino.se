@@ -11,7 +11,7 @@ help:
 # target: publish				- Updates, builds and publishes homepage
 .PHONY: publish
 publish: build
-	rsync -av output/ efo@46.101.223.77:/var/www/emilfolino.se/html/
+	rsync -av output/ efo@emilfolino.se:/var/www/emilfolino.se/html/
 
 
 
@@ -28,7 +28,9 @@ update:
 .PHONY: build
 build:
 	rm -rf output/*
+	mkdir -p output/articles/
 	cp -r fonts output/
 	cp -r img output/
+	cp -r favicon/* output/
 	sass base.scss output/style.min.css --style compressed
 	/usr/bin/php compiler.php

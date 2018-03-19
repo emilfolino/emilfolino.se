@@ -1,20 +1,20 @@
 ## Technical
 
-I wanted this page to be _fast_, _reliable_ and _accessible_. This is what I did.
+I wanted this page to be **fast**, **reliable** and **accessible**. This is what I did.
 
 
 ### Server
-The server is a Digital Ocean _debian_ droplet and the site is served via _nginx_.
+The server is a Digital Ocean debian droplet and the site is served via nginx.
 
 
 
 ### Static pages
-All pages are generated static _HTML pages_. The content is written in _[Markdown](https://daringfireball.net/projects/markdown/)_ and converted to HTML before being synced to the server.
+All pages are generated static HTML pages. The content is written in [Markdown](https://daringfireball.net/projects/markdown/) and converted to HTML before being synced to the server.
 
 
 
 ### Typography
-I came across the [faune](http://www.cnap.graphismeenfrance.fr/faune/en.html) font and liked the different look. The fonts are hosted on the server and served & cached through _nginx_.
+I came across the [faune](http://www.cnap.graphismeenfrance.fr/faune/en.html) font and liked the different look. The fonts are hosted on the server and served & cached through nginx.
 
 
 

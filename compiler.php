@@ -25,7 +25,15 @@ function make_index($output_file, $number_of_files=-1) {
     foreach ($files as $key => $filename) {
         $html_content.= "<article>\n";
         $html_content.= "<time datetime='" . date("Y-m-d\TH:i", filemtime($filename)) . "' class='article-date'>" . date("Y-m-d", filemtime($filename)) . "</time>";
-        $html_content.= Markdown::defaultTransform(file_get_contents($filename));
+
+        $html = Markdown::defaultTransform(file_get_contents($filename));
+        $dom = HtmlDomParser::str_get_html($html);
+        $title = $dom->find("h2", 0)->plaintext;
+        $link = slugify($title);
+
+        $html_content.= $html;
+
+        $html_content.= "<p><a href='/articles/". $link ."'>Read</a></p>";
         $html_content.= "</article>\n";
     }
 
@@ -57,6 +65,38 @@ function make_pages() {
 
         $html_content.= "<article>\n";
         $html_content.= $html;
+        $html_content.= "<address rel='author' class='author'>Written by: <a href='mailto:emilfolino@gmail.com' rel='author'>Emil Folino</a></address>";
+        $html_content.= "</article>\n";
+        $html_content.= "</main>";
+        $html_content.= make_foot();
+
+        file_put_contents($output_dir."/".$output_file, $html_content);
+    }
+}
+
+
+
+function make_articles() {
+    $output_dir = "output/articles";
+    $content_dir = "content";
+
+    $files = glob("$content_dir/*.md");
+    foreach ($files as $key => $filename) {
+        $html = Markdown::defaultTransform(file_get_contents($filename));
+        $dom = HtmlDomParser::str_get_html($html);
+        $title = $dom->find("h2",0)->plaintext;
+        $output_file = slugify($title) . ".html";
+
+        $html_content = make_head($title);
+        $html_content.= make_meny();
+
+        $html_content.= '<main class="container">';
+        $html_content.= '<h1 class="main-title-mobile">emilfolino.se</h1>';
+
+        $html_content.= "<article>\n";
+        $html_content.= $html;
+        $html_content.= "<address rel='author' class='author'>Written by: <a href='mailto:emilfolino@gmail.com' rel='author'>Emil Folino</a></address>";
+        $html_content.= "<p class='back-link'><a href='/'>Back</a></p>";
         $html_content.= "</article>\n";
         $html_content.= "</main>";
         $html_content.= make_foot();
@@ -72,11 +112,21 @@ function make_head($title) {
     $str.= "<html lang='en'>";
     $str.= "<head>";
         $str.= "<meta charset='utf-8'>";
+        $str.= '<meta name="description" content="Ramblings about the web, teaching and development from Emil Folino">';
+        $str.= '<meta name="keywords" content="Web,HTML,CSS,JavaScript,Web development,Academia,Webbprogrammering,dbwebb,Adjunkt,BTH">';
+        $str.= '<meta name="author" content="Emil Folino">';
         $str.= "<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>";
         $str.= "<title>";
         $str.= isset($title) ? $title . " - " : "";
         $str.= "emilfolino.se</title>";
-        $str.= "<link rel='stylesheet' href='style.min.css' />";
+        $str.= "<link rel='stylesheet' href='/style.min.css' />";
+        $str.= '<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">';
+        $str.= '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">';
+        $str.= '<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">';
+        $str.= '<link rel="manifest" href="/site.webmanifest">';
+        $str.= '<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">';
+        $str.= '<meta name="msapplication-TileColor" content="#da532c">';
+        $str.= '<meta name="theme-color" content="#ffffff">';
     $str.= "</head>";
     $str.= "<body>";
 
@@ -92,7 +142,7 @@ function make_meny() {
     $str.= "<h1 class='main-title'><a href='/'>emilfolino.se</a></h1>";
 
     $menu_items = [
-        "/" => "Home",
+        "" => "Home",
         //"archive.html" => "Archive"
     ];
 
@@ -100,12 +150,12 @@ function make_meny() {
     foreach ($files as $key => $filename) {
         $dom = HtmlDomParser::str_get_html(Markdown::defaultTransform(file_get_contents($filename)));
         $title = $dom->find("h2",0)->plaintext;
-        $slug = slugify($title) . ".html";
+        $slug = slugify($title);
         $menu_items[$slug] = $title;
     }
 
     foreach ($menu_items as $url => $text) {
-        $str.= "<a class='menu-item' href='$url'>$text</a>";
+        $str.= "<a class='menu-item' href='/$url'>$text</a>";
     }
 
     $str.= "</nav>";
@@ -138,5 +188,4 @@ function slugify($str)
 make_index("index.html", 10);
 // make_index("archive.html");
 make_pages();
-
-print("<br>DONE");
+make_articles();
