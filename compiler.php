@@ -166,7 +166,17 @@ function make_meny() {
 
 
 function make_foot() {
-    $str = "</body>";
+    $str = '<!-- Global site tag (gtag.js) - Google Analytics -->';
+    $str.= '<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116076359-1"></script>';
+    $str.= '<script>';
+          $str.= 'window.dataLayer = window.dataLayer || [];';
+          $str.= 'function gtag(){dataLayer.push(arguments);}';
+          $str.= 'gtag("js", new Date());';
+
+          $str.= 'gtag("config", "UA-116076359-1");';
+    $str.= '</script>';
+
+    $str.= "</body>";
     $str.= "</html>";
 
     return $str;
