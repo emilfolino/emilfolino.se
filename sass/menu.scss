@@ -25,6 +25,12 @@
     text-decoration: underline;
 }
 
+.copyright {
+    position: fixed;
+    bottom: 2rem;
+    color: white;
+}
+
 @media (min-width: 1024px) {
     .left-menu {
         position: fixed;
@@ -61,5 +67,9 @@
     .menu-item {
         margin-bottom: 0;
         padding: 0.8rem 0;
+    }
+
+    .copyright {
+        display: none;
     }
 }

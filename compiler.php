@@ -158,6 +158,10 @@ function make_meny() {
         $str.= "<a class='menu-item' href='/$url'>$text</a>";
     }
 
+    $str.= "<div class='copyright'>";
+        $str.= "<p>&copy; Emil Folino ". date("Y") ."</p>";
+    $str.= "</div>";
+
     $str.= "</nav>";
 
     return $str;
