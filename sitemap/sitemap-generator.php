@@ -98,59 +98,63 @@ function rel2abs($rel, $base) {
 
 		array_push ($scanned, $url);
 		$html = str_get_html (GetUrl ($url));
-		$a1   = $html->find('a');
+		if (!empty($html)) {
+			$a1   = $html->find('a');
+			foreach ($a1 as $val) {
+				$next_url = $val->href or "";
 
-		foreach ($a1 as $val) {
-			$next_url = $val->href or "";
+				$fragment_split = explode ("#", $next_url);
+				$next_url       = $fragment_split[0];
 
-			$fragment_split = explode ("#", $next_url);
-			$next_url       = $fragment_split[0];
-
-			if ((substr ($next_url, 0, 7) != "http://")  &&
-				(substr ($next_url, 0, 8) != "https://") &&
-				(substr ($next_url, 0, 6) != "ftp://")   &&
-				(substr ($next_url, 0, 7) != "mailto:"))
-				{
-					$next_url = @rel2abs ($next_url, $url);
-				}
-
-				$next_url = filter_var ($next_url, FILTER_SANITIZE_URL);
-
-				if (substr ($next_url, 0, strlen ($start_url)) == $start_url) {
-					$ignore = false;
-
-					if (!filter_var ($next_url, FILTER_VALIDATE_URL)) {
-						$ignore = true;
+				if ((substr ($next_url, 0, 7) != "http://")  &&
+					(substr ($next_url, 0, 8) != "https://") &&
+					(substr ($next_url, 0, 6) != "ftp://")   &&
+					(substr ($next_url, 0, 7) != "mailto:"))
+					{
+						$next_url = @rel2abs ($next_url, $url);
 					}
 
-					if (in_array ($next_url, $scanned)) {
-						$ignore = true;
-					}
+					$next_url = filter_var ($next_url, FILTER_SANITIZE_URL);
 
-					if (isset ($skip) && !$ignore) {
-						foreach ($skip as $v) {
-							if (substr ($next_url, 0, strlen ($v)) == $v)
-							{
-								$ignore = true;
+					if (substr ($next_url, 0, strlen ($start_url)) == $start_url) {
+						$ignore = false;
+
+						if (!filter_var ($next_url, FILTER_VALIDATE_URL)) {
+							$ignore = true;
+						}
+
+						if (in_array ($next_url, $scanned)) {
+							$ignore = true;
+						}
+
+						if (isset ($skip) && !$ignore) {
+							foreach ($skip as $v) {
+								if (substr ($next_url, 0, strlen ($v)) == $v)
+								{
+									$ignore = true;
+								}
 							}
 						}
-					}
 
-					if (!$ignore) {
-						foreach ($extension as $ext) {
-							if (strpos ($next_url, $ext) > 0) {
-								$pr = number_format ( round ( $priority / count ( explode( "/", trim ( str_ireplace ( array ("http://", "https://"), "", $next_url ), "/" ) ) ) + 0.5, 3 ), 1 );
-									fwrite ($pf, "  <url>\n" .
-									"    <loc>" . htmlentities ($next_url) ."</loc>\n" .
-									"    <changefreq>$freq</changefreq>\n" .
-									"    <priority>$pr</priority>\n" .
-									"  </url>\n");
-									Scan ($next_url);
+						if (!$ignore) {
+							foreach ($extension as $ext) {
+								if (strpos ($next_url, $ext) > 0) {
+									$pr = number_format ( round ( $priority / count ( explode( "/", trim ( str_ireplace ( array ("http://", "https://"), "", $next_url ), "/" ) ) ) + 0.5, 3 ), 1 );
+										fwrite ($pf, "  <url>\n" .
+										"    <loc>" . htmlentities ($next_url) ."</loc>\n" .
+										"    <changefreq>$freq</changefreq>\n" .
+										"    <priority>$pr</priority>\n" .
+										"  </url>\n");
+										Scan ($next_url);
+									}
 								}
 							}
 						}
 					}
 				}
+
+
+
 			}
 
 

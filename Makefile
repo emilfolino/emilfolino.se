@@ -33,6 +33,7 @@ build:
 	cp -r fonts output/
 	cp -r img output/
 	cp -r favicon/* output/
+	cp -r pubs output/
 	cp robots.txt output/
 	sass base.scss output/style.min.css --style compressed
 	/usr/bin/php compiler.php
