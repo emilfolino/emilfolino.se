@@ -1,0 +1,2 @@
+## Getting too Comfortable
+I am giving a course this Study Period called webapp. In the course we start out building a SPA in vanilla JavaScript. Halfway through the course I introduce a JavaScript framework called [mithril](https://mithril.js.org). I have noticed that I may have become too comfortable with mithril as a technology as the students struggle hard with things that I find easy in mithril. As a teacher trying to see the assignments through the students' lens is always hard and getting too comfortable with a technology does not aid the process.
