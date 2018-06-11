@@ -30,10 +30,12 @@ update:
 build:
 	rm -rf output/*
 	mkdir -p output/articles/
+	mkdir -p output/static/
 	cp -r fonts output/
 	cp -r img output/
 	cp -r favicon/* output/
 	cp -r pubs output/
+	cp -r static/* output/static/
 	cp robots.txt output/
 	sass base.scss output/style.min.css --style compressed
 	/usr/bin/php compiler.php
