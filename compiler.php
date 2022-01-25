@@ -1,7 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 use Michelf\Markdown;
-use Sunra\PhpSimple\HtmlDomParser;
+use PHPHtmlParser\Dom;
 
 function make_index($output_file, $number_of_files=-1) {
     $input_dir = "content";
@@ -15,7 +15,7 @@ function make_index($output_file, $number_of_files=-1) {
 
     $files = glob("$input_dir/*.md");
     usort($files, function($a, $b) {
-        return filemtime($a) < filemtime($b);
+        return filemtime($a) - filemtime($b);
     });
 
     if (isset($number_of_files) && $number_of_files > 0) {
@@ -27,8 +27,9 @@ function make_index($output_file, $number_of_files=-1) {
         $html_content.= "<time datetime='" . date("Y-m-d\TH:i", filemtime($filename)) . "' class='article-date'>" . date("Y-m-d", filemtime($filename)) . "</time>";
 
         $html = Markdown::defaultTransform(file_get_contents($filename));
-        $dom = HtmlDomParser::str_get_html($html);
-        $title = $dom->find("h2", 0)->plaintext;
+        $dom = new Dom;
+        $dom->loadStr($html);
+        $title = $dom->find("h2")[0]->text;
         $link = slugify($title);
 
         $html_content.= $html;
@@ -53,8 +54,9 @@ function make_pages() {
     $files = glob("$pages_dir/*.md");
     foreach ($files as $key => $filename) {
         $html = Markdown::defaultTransform(file_get_contents($filename));
-        $dom = HtmlDomParser::str_get_html($html);
-        $title = $dom->find("h2",0)->plaintext;
+        $dom = new Dom;
+        $dom->loadStr($html);
+        $title = $dom->find("h2")[0]->text;
         $output_file = slugify($title) . ".html";
 
         $html_content = make_head($title);
@@ -83,8 +85,9 @@ function make_articles() {
     $files = glob("$content_dir/*.md");
     foreach ($files as $key => $filename) {
         $html = Markdown::defaultTransform(file_get_contents($filename));
-        $dom = HtmlDomParser::str_get_html($html);
-        $title = $dom->find("h2",0)->plaintext;
+        $dom = new Dom;
+        $dom->loadStr($html);
+        $title = $dom->find("h2")[0]->text;
         $output_file = slugify($title) . ".html";
 
         $html_content = make_head($title);
@@ -147,13 +150,14 @@ function make_meny() {
     ];
 
     $files = glob("$pages_dir/*.md");
+
     foreach ($files as $key => $filename) {
-        $dom = HtmlDomParser::str_get_html(Markdown::defaultTransform(file_get_contents($filename)));
-        $title = $dom->find("h2",0)->plaintext;
+        $dom = new Dom;
+        $dom->loadStr(Markdown::defaultTransform(file_get_contents($filename)));
+        $title = $dom->find("h2")[0]->text;
         $slug = slugify($title);
         $menu_items[$slug] = $title;
     }
-
     foreach ($menu_items as $url => $text) {
         $str.= "<a class='menu-item' href='/$url'>$text</a>";
     }

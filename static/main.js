@@ -1,0 +1,1 @@
+window.easteregg=function(){let e="https://youtu.be/CO3LwBKxAkM",t=document.createElement("a");t.href=e,t.textContent=e,t.style="font-size: 72px;",document.getElementById("toc").prepend(t),window.scrollTo(0,0)};

@@ -37,5 +37,5 @@ build:
 	cp -r pubs output/
 	cp -r static/* output/static/
 	cp robots.txt output/
-	sass base.scss output/style.min.css --style compressed
+	#sass base.scss output/style.min.css --style compressed
 	/usr/bin/php compiler.php
